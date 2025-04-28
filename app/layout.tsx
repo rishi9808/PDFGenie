@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ConvexClientProvider } from "./ConvexClientProvider";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const poppins = Poppins({subsets: ["latin"], weight: ["400", "500", "600", "700"]});
 
@@ -16,6 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body
         className={`${poppins.className} antialiased`}
@@ -25,5 +27,6 @@ export default function RootLayout({
         </ConvexClientProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
