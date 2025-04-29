@@ -17,7 +17,9 @@ export default function Home() {
           imageUrl: user?.imageUrl ?? "",
           userName: user?.fullName ?? ""
         });
-        console.log(res)
+        console.log(res);
+        //TODO: store user details in redux
+        localStorage.setItem("userId", res._id)
       }
     };
     

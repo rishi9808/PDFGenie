@@ -28,12 +28,12 @@ export const createUser = mutation({
                     }
                 )
 
-                return "user created successfully"
+                return user[0];
             } catch (error) {
                 throw new ConvexError(`error inserting userdetails, ${error}`)
             }
         }
 
-        return "User already exists"
+        return user[0];
     }
 })

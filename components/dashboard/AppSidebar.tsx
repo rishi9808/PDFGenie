@@ -9,9 +9,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Cable, Home, Settings, Upload } from "lucide-react"
-import { Button } from "../ui/button"
+import { Cable, Home, Settings,} from "lucide-react"
+
 import { Progress } from "../ui/progress"
+import { UploadPdfButtton } from "./UploadPdfButton"
 
 
 // Menu items.
@@ -43,8 +44,9 @@ export const AppSidebar = () => {
       </SidebarHeader>
        <SidebarContent>
         <SidebarGroup />
-        <Button className="mx-2"> 
-        <Upload /> Upload PDF</Button>
+       
+        <UploadPdfButtton />
+        
         <SidebarGroupContent>
         <SidebarMenu>
               {items.map((item) => (
