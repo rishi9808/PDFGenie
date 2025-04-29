@@ -14,4 +14,12 @@ export default defineSchema({
         userId: v.id("users"),
         fileUrl: v.string(),
     }),
+    documents: defineTable({
+        embedding: v.array(v.number()),
+        text: v.string(),
+        metadata: v.any(),
+      }).vectorIndex("byEmbedding", {
+        vectorField: "embedding",
+        dimensions: 1536,
+      }),
 });

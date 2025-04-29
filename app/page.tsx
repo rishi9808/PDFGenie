@@ -34,6 +34,7 @@ export default function Home() {
 
       <h1 className="text-3xl font-bold underline">
         {user ? `Hello ${user?.firstName}` : `hi`}
+        
       </h1>
     </div>
  

@@ -17,8 +17,8 @@ export const addPdf = mutation({
             fileUrl,
         };
         try {
-            await ctx.db.insert("pdfs", pdf);
-            return "PDF added successfully";
+            const data =await ctx.db.insert("pdfs", pdf);
+            return data;
         } catch (error) {
             console.error("Error adding PDF:", error);
             throw new Error("Failed to add PDF");

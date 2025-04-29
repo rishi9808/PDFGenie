@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { useMutation } from "convex/react";
+import { useAction, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { FormEvent, useRef, useState } from "react";
 import { Id } from "@/convex/_generated/dataModel";
@@ -22,11 +22,14 @@ export function UploadPdfButtton() {
   const uploadPDF = useMutation(api.pdf.addPdf);
   const fileUrl = useMutation(api.pdfStorage.getFileUrl);
 
+  const embeddPdf = useAction(api.pdfAction.ingest);
+
   const userId = localStorage.getItem("userId") ?? "";
   const fileInput = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   async function handleFileUpload(e: FormEvent) {
     e.preventDefault();
@@ -48,22 +51,43 @@ export function UploadPdfButtton() {
 
     console.log(url);
 
-    await uploadPDF({
+    const pdfId = await uploadPDF({
       storageId: storageId,
       fileName: fileName,
       userId: userId as Id<"users">,
       fileUrl: url!,
     });
 
+  
+
+    const pdfChunkResponse = await fetch(
+      'api/process-pdf?url=' + url,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    const pdfChunkData = await pdfChunkResponse.json();
+    console.log(pdfChunkData);
+
+    const res = await embeddPdf({
+      docs: pdfChunkData.result,
+      fileId: pdfId as Id<"pdfs">,
+    });
+
+    console.log(res);
     setSelectedFile(null);
     fileInput.current!.value = "";
     setFileName("");
     setLoading(false);
+    setOpen(false);
   }
   return (
-    <Dialog>
+    <Dialog open={open}>
       <DialogTrigger asChild>
-        <Button className="mx-2">
+        <Button className="mx-2" onClick={()=> setOpen(true)}>
           <Upload /> Upload PDF
         </Button>
       </DialogTrigger>
