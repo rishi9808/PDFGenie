@@ -17,3 +17,17 @@ export const getFileUrl = mutation({
         return fileUrl;
     }
 });
+
+export const getPdfUrlWithId = mutation({
+  args: {
+    pdfId: v.id("pdfs"),
+  },
+  handler: async (ctx, args) => {
+    const { pdfId } = args;
+    const pdf = await ctx.db.get(pdfId);
+    if (!pdf) {
+      throw new Error("PDF not found");
+    }
+    return pdf.fileUrl;
+  },
+});

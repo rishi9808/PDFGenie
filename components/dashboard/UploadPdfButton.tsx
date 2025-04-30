@@ -16,13 +16,14 @@ import { useAction, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { FormEvent, useRef, useState } from "react";
 import { Id } from "@/convex/_generated/dataModel";
+import { useRouter } from 'next/navigation'
 
 export function UploadPdfButtton() {
   const generateUploadUrl = useMutation(api.pdfStorage.generateUploadUrl);
   const uploadPDF = useMutation(api.pdf.addPdf);
   const fileUrl = useMutation(api.pdfStorage.getFileUrl);
-
   const embeddPdf = useAction(api.pdfAction.ingest);
+  const router = useRouter();
 
   const userId = localStorage.getItem("userId") ?? "";
   const fileInput = useRef<HTMLInputElement>(null);
@@ -83,6 +84,7 @@ export function UploadPdfButtton() {
     setFileName("");
     setLoading(false);
     setOpen(false);
+    router.push("/workspace/" + pdfId);
   }
   return (
     <Dialog open={open}>
@@ -123,7 +125,10 @@ export function UploadPdfButtton() {
             disabled={loading || fileName === "" || selectedFile === null}
             >
             {loading ? (
-              <Loader2 />
+              <div className="flex">
+                <Loader2 className="animate-spin"/>
+                Uploading...
+              </div>
             ): (
               <span>Upload</span>
             )}
