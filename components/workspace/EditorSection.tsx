@@ -3,18 +3,43 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
-import { Bold, Code2, Italic } from "lucide-react";
+import {  Blocks, Bold, Code2, Italic } from "lucide-react";
 import { Button } from "../ui/button";
+import Blockquote from "@tiptap/extension-blockquote";
+import { all, createLowlight } from "lowlight";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import css from "highlight.js/lib/languages/css";
+import js from "highlight.js/lib/languages/javascript";
+import ts from "highlight.js/lib/languages/typescript";
+import html from "highlight.js/lib/languages/xml";
+import Heading from "@tiptap/extension-heading";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
 
 
 const EditorSection = () => {
+  const lowlight = createLowlight(all);
+
+  // This is only an example, all supported languages are already loaded above
+  // but you can also register only specific languages to reduce bundle-size
+  lowlight.register("html", html);
+  lowlight.register("css", css);
+  lowlight.register("js", js);
+  lowlight.register("ts", ts);
+
   const editor = useEditor({
     extensions: [
       StarterKit,
       Placeholder.configure({
         placeholder: "Type your notes here...",
       }),
-     
+      Blockquote,
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
+      Heading.configure({
+        levels: [1, 2],
+      }),
+      HorizontalRule,
     ],
     editorProps: {
       attributes: {
@@ -25,36 +50,73 @@ const EditorSection = () => {
 
   return (
     <div className="flex flex-col h-screen space-y-2 p-4">
-        <div className="flex justify-between">
-      <div className="flex space-x-2">
-        <Button
-          variant={"outline"}
-          size="icon"
-          onClick={() => editor?.chain().focus().toggleBold().run()}
-          className={editor?.isActive("bold") ? "is-active" : ""}
-        >
-          <Bold className="w-5 h-5" />
-        </Button>
+      <div className="flex justify-between">
+        <div className="flex space-x-2">
+          <Button
+            variant={"outline"}
+            onClick={() =>
+              editor?.chain().focus().toggleHeading({ level: 1 }).run()
+            }
+            className={
+              editor?.isActive("heading", { level: 1 }) ? "bg-blue-400" : ""
+            }
+          >
+            H1
+          </Button>
 
-        <Button
+          <Button
+            variant={"outline"}
+            onClick={() =>
+              editor?.chain().focus().toggleHeading({ level: 2 }).run()
+            }
+            className={
+              editor?.isActive("heading", { level: 2 }) ? "bg-blue-400" : ""
+            }
+          >
+            H2
+          </Button>
+
+          <Button
+            variant={"outline"}
+            size="icon"
+            onClick={() => editor?.chain().focus().toggleBold().run()}
+            className={editor?.isActive("bold") ? "bg-blue-400" : ""}
+          >
+            <Bold className="w-5 h-5" />
+          </Button>
+
+          <Button
+            variant={"outline"}
+            size="icon"
+            onClick={() => editor?.chain().focus().toggleItalic().run()}
+            className={editor?.isActive("italic") ? "bg-blue-400" : ""}
+          >
+            <Italic className="w-5 h-5" />
+          </Button>
+
+          <Button
+            variant={"outline"}
+            onClick={() => editor?.chain().focus().toggleCodeBlock().run()}
+            className={editor?.isActive("codeBlock") ? "bg-blue-400" : ""}
+          >
+            <Code2 className="w-5 h-5" />
+          </Button>
+
+          <Button
+            variant={"outline"}
+            onClick={() => editor?.chain().focus().toggleBlockquote().run()}
+            className={editor?.isActive("blockquote") ? "bg-blue-400" : ""}
+          >
+            <Blocks className="w-5 h-5" />
+          </Button>
+
+          <Button 
           variant={"outline"}
-          size="icon"
-          onClick={() => editor?.chain().focus().toggleItalic().run()}
-          className={editor?.isActive("italic") ? "is-active" : ""}
-        >
-          <Italic className="w-5 h-5" />
-        </Button>
-        
-        <Button
-          variant={"outline"}
-          size="icon"
-          onClick={() => editor?.chain().focus().toggleCode().run()}
-          className={editor?.isActive("code") ? "is-active" : ""}
-        >
-          <Code2 className="w-5 h-5" />
-        </Button>
-      </div>
+          onClick={() => editor?.chain().focus().setHorizontalRule().run()}>
+            -
+          </Button>
         </div>
+      </div>
 
       <EditorContent
         editor={editor}
