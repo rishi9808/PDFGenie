@@ -21,6 +21,7 @@ import type * as pdfAction from "../pdfAction.js";
 import type * as pdfStorage from "../pdfStorage.js";
 import type * as serve from "../serve.js";
 import type * as user from "../user.js";
+import type * as workspace from "../workspace.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -39,6 +40,7 @@ declare const fullApi: ApiFromModules<{
   pdfStorage: typeof pdfStorage;
   serve: typeof serve;
   user: typeof user;
+  workspace: typeof workspace;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

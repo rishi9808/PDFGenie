@@ -45,7 +45,7 @@ export const AppSidebar = () => {
        <SidebarContent>
         <SidebarGroup />
        
-        <UploadPdfButtton />
+        <UploadPdfButtton variant="Sidebar" />
         
         <SidebarGroupContent>
         <SidebarMenu>

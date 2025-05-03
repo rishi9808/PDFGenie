@@ -1,32 +1,8 @@
-import { Id } from "@/convex/_generated/dataModel";
-import { api } from "@/convex/_generated/api";
-import { useMutation} from "convex/react";
-import { useEffect, useState } from "react";
-
 interface PDFViewerProps {
-  fileId: Id<"pdfs">;
+  pdfUrl?: string;
 }
 
-const PDFViewer = ({ fileId }: PDFViewerProps) => {
-  const getURl = useMutation(api.pdfStorage.getPdfUrlWithId);
-  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchUrl = async () => {
-      try {
-        const url = await getURl({ pdfId: fileId });
-        if (url) {
-          setPdfUrl(url);
-        } else {
-          console.error("URL not found");
-        }
-      } catch (error) {
-        console.error("Error fetching URL:", error);
-      }
-    };
-    fetchUrl();
-  }, [fileId, getURl]);
-
+const PDFViewer = ({  pdfUrl }: PDFViewerProps) => {
   return (
     <div className="h-full">
       {pdfUrl ? (

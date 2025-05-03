@@ -24,7 +24,9 @@ export const createUser = mutation({
                     {
                         email: args.email,
                         imageUrl: args.imageUrl,
-                        username: args.userName
+                        username: args.userName,
+                        plan: "free",
+                        pdfUploadCount: 0,
                     }
                 )
 

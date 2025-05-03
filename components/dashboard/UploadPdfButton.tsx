@@ -18,7 +18,11 @@ import { FormEvent, useRef, useState } from "react";
 import { Id } from "@/convex/_generated/dataModel";
 import { useRouter } from 'next/navigation'
 
-export function UploadPdfButtton() {
+interface UploadPdfButtonProps {
+  variant: "Sidebar" | "Workspace";
+}
+
+export function UploadPdfButtton({ variant }: UploadPdfButtonProps) {
   const generateUploadUrl = useMutation(api.pdfStorage.generateUploadUrl);
   const uploadPDF = useMutation(api.pdf.addPdf);
   const fileUrl = useMutation(api.pdfStorage.getFileUrl);
@@ -87,11 +91,20 @@ export function UploadPdfButtton() {
     router.push("/workspace/" + pdfId);
   }
   return (
-    <Dialog open={open}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="mx-2" onClick={()=> setOpen(true)}>
-          <Upload /> Upload PDF
-        </Button>
+        {variant === "Sidebar" ? (
+          <Button className="w-full mr-3 py-2 text-sm font-medium   border border-gray-300 rounded-lg shadow-sm  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <Upload className="mr-2 h-4 w-4" />
+            Upload PDF
+          </Button>
+        ) : (
+          <div className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md">
+            <Upload className="h-16 w-16 text-gray-500" />
+            <h2 className="text-lg font-semibold">Upload PDF</h2>
+            <p className="text-sm text-gray-600">Click to upload a new PDF</p>
+          </div>
+        )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
@@ -117,7 +130,14 @@ export function UploadPdfButtton() {
         <DialogFooter className="">
           <div className="flex space-x-2">
             <DialogClose asChild>
-              <Button type="button" variant="secondary">
+              <Button 
+                onClick={() => {
+                  setOpen(false);
+                  setFileName("");
+                  setSelectedFile(null);
+                }}
+                disabled={loading}
+              type="button" variant="secondary">
                 Cancel
               </Button>
             </DialogClose>

@@ -1,9 +1,8 @@
-"use client";
 
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
-import {  Blocks, Bold, Code2, Italic } from "lucide-react";
+import { Blocks, Bold, Code2, Italic } from "lucide-react";
 import { Button } from "../ui/button";
 import Blockquote from "@tiptap/extension-blockquote";
 import { all, createLowlight } from "lowlight";
@@ -14,11 +13,51 @@ import ts from "highlight.js/lib/languages/typescript";
 import html from "highlight.js/lib/languages/xml";
 import Heading from "@tiptap/extension-heading";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
+import { useMutation, useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
+import { toast } from "sonner";
+import { useEffect } from "react";
 
+const EditorSection = ({
+  fileId,
+  userId,
+  fileName,
+  pdfUrl,
+}: {
+  fileId: Id<"pdfs">;
+  userId: Id<"users">;
+  fileName: string;
+  pdfUrl: string;
+}) => {
+  // Save the workspace
+  const saveWorkspace = useMutation(api.workspace.saveWorkspace);
 
-const EditorSection = () => {
+  // check if editor has any content
+  const workspaceContent = useQuery(api.workspace.getWorkspace, {
+    fileId: fileId,
+});
+
+  const handleSave = async () => {
+    // Save the content of the editor
+    const content = editor?.getJSON();
+    console.log("Saved content:", content);
+    try {
+      await saveWorkspace({
+        fileId: fileId,
+        userId: userId,
+        fileName: fileName,
+        pdfUrl: pdfUrl,
+        editorContent: JSON.stringify(content),
+      });
+      toast.success("Workspace saved successfully!");
+    } catch (error) {
+      console.error("Error saving workspace:", error);
+      toast.error("Error saving workspace");
+    }
+  };
+
   const lowlight = createLowlight(all);
-
   // This is only an example, all supported languages are already loaded above
   // but you can also register only specific languages to reduce bundle-size
   lowlight.register("html", html);
@@ -47,6 +86,13 @@ const EditorSection = () => {
       },
     },
   });
+
+  useEffect(() => {
+    if (workspaceContent?.success) {
+      const content = JSON.parse(workspaceContent.data?.editorContent);
+      editor?.commands.setContent(content);
+    }
+  }, [workspaceContent, editor]);
 
   return (
     <div className="flex flex-col h-screen space-y-2 p-4">
@@ -110,12 +156,20 @@ const EditorSection = () => {
             <Blocks className="w-5 h-5" />
           </Button>
 
-          <Button 
-          variant={"outline"}
-          onClick={() => editor?.chain().focus().setHorizontalRule().run()}>
+          <Button
+            variant={"outline"}
+            onClick={() => editor?.chain().focus().setHorizontalRule().run()}
+          >
             -
           </Button>
         </div>
+        <Button
+          variant={"outline"}
+          onClick={handleSave}
+          className="bg-blue-500 text-white hover:bg-blue-600"
+        >
+          Save
+        </Button>
       </div>
 
       <EditorContent

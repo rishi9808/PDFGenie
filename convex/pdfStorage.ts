@@ -28,6 +28,9 @@ export const getPdfUrlWithId = mutation({
     if (!pdf) {
       throw new Error("PDF not found");
     }
-    return pdf.fileUrl;
+    return {
+      url: pdf.fileUrl,
+      fileName: pdf.fileName,
+    }
   },
 });
