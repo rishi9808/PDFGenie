@@ -1,7 +1,8 @@
 import type { IconProps as PhosphorProps } from '@phosphor-icons/react'
 import * as Phosphor from '@phosphor-icons/react'
+import React from 'react'
 
-export type Icon = (props: PhosphorProps) => JSX.Element
+export type Icon = (props: PhosphorProps) => React.ReactElement
 
 export const ArrowRight = Phosphor.ArrowRight
 export const Ecosystem = Phosphor.Leaf

@@ -1,7 +1,7 @@
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 
-import { Feature } from '../utils/features-list'
+import { Feature } from '@/lib/utils/features-list' 
 import * as Icons from './icons'
 
 interface FeatureCardProps {
