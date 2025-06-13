@@ -96,21 +96,21 @@ const ChatSection = ({ fileId }: ChatSectionProps) => {
                 <div key={message._id}>
                   <div
                     className={
-                      "text-neutral-400 text-sm w-full flex " +
+                      "text-white text-sm w-full flex " +
                       (message.isViewer ? "justify-end" : "justify-start")
                     }
                   >
                     {!message.isViewer && <Bot className="text-gray-500 mr-2 size-5" />}
                     {message.text === "" ? (
-                      <div className="animate-pulse rounded-md bg-black/10 h-9" />
+                      <div className="animate-pulse rounded-md bg-blue-300 h-9" />
                     ) : (
                       <div className={"whitespace-pre-wrap flex items-center "}>
                         <p
                           className={
                             "rounded-xl px-3 py-2 " +
                             (message.isViewer
-                              ? "bg-neutral-200 mt-3 text-black dark:bg-neutral-800 "
-                              : "bg-neutral-400 mt-3 mr-2 w-fit text-black dark:bg-neutral-900 ") +
+                              ? "bg-purple-400 mt-3  "
+                              : "bg-blue-500 mt-3 mr-2 w-fit") +
                             (message.isViewer
                               ? "rounded-tr-none"
                               : "rounded-tl-none")
