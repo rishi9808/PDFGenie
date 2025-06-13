@@ -1,8 +1,8 @@
-import { SignIn } from '@clerk/nextjs'
+import { SignUp } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function SignInPage() {
+export default function SignUpPage() {
   return (
     <div className="flex flex-col items-center space-y-6">
       {/* Logo and branding */}
@@ -19,12 +19,28 @@ export default function SignInPage() {
       
       {/* Welcome message */}
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-white">Welcome Back</h1>
-        <p className="text-gray-300">Sign in to access your PDF workspace</p>
+        <h1 className="text-3xl font-bold text-white">Get Started Free</h1>
+        <p className="text-gray-300">Create your account to start chatting with PDFs</p>
       </div>
       
-      {/* Clerk SignIn component */}
-      <SignIn 
+      {/* Features highlight */}
+      <div className="grid grid-cols-1 gap-2 text-sm text-gray-300 bg-gray-800/30 p-4 rounded-lg border border-gray-700">
+        <div className="flex items-center space-x-2">
+          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+          <span>Upload up to 3 PDFs for free</span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+          <span>AI-powered chat with your documents</span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+          <span>Secure cloud storage</span>
+        </div>
+      </div>
+      
+      {/* Clerk SignUp component */}
+      <SignUp 
         appearance={{
           elements: {
             formButtonPrimary: 
@@ -57,15 +73,15 @@ export default function SignInPage() {
               "text-purple-400 hover:text-purple-300",
           },
         }}
-        afterSignInUrl={"/dashboard"}
-        signUpUrl="/sign-up"
+        afterSignUpUrl={"/welcome"}
+        signInUrl="/sign-in"
       />
       
       {/* Footer */}
       <div className="text-center text-sm text-gray-400">
-        Don&apos;t have an account?{' '}
-        <Link href="/sign-up" className="text-purple-400 hover:text-purple-300 font-medium">
-          Sign up for free
+        Already have an account?{' '}
+        <Link href="/sign-in" className="text-purple-400 hover:text-purple-300 font-medium">
+          Sign in here
         </Link>
       </div>
     </div>

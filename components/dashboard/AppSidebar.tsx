@@ -14,9 +14,7 @@ import { Cable, Home, Settings,} from "lucide-react"
 
 import { Progress } from "../ui/progress"
 import { UploadPdfButtton } from "./UploadPdfButton"
-import { useQuery } from "convex/react"
-import { api } from "@/convex/_generated/api"
-import { Id } from "@/convex/_generated/dataModel"
+import { useUserData } from "@/hooks/use-user-data"
 
 
 
@@ -43,15 +41,24 @@ const items = [
 
 
 export const AppSidebar = () => {
-  const userId = localStorage.getItem("userId")
-  const user = useQuery(api.user.getUserDetails, {
-    userId: userId as Id<"users">,
-  }) 
+  const { userDetails, isInitialized, internalUserId } = useUserData();
 
-  const totalPdf = user?.plan === "free" ? 3 : 5
+  const totalPdf = userDetails?.plan === "free" ? 3 : 5;
 
-  if (!userId) {
-    return null
+  // Show loading state while initializing
+  if (!isInitialized || !internalUserId) {
+    return (
+      <Sidebar variant="floating">
+        <SidebarHeader className="pt-3 font-bold">
+          Chat with PDF
+        </SidebarHeader>
+        <SidebarContent>
+          <div className="flex items-center justify-center h-32">
+            <div className="text-sm text-muted-foreground">Loading...</div>
+          </div>
+        </SidebarContent>
+      </Sidebar>
+    );
   }
 
   return (
@@ -83,8 +90,8 @@ export const AppSidebar = () => {
       </SidebarContent>
       <SidebarFooter >
         <div className="border py-3 px-2 rounded-md text-center">
-          <Progress value={((user?.pdfUploadCount || 0) / totalPdf) * 100} />
-          <p className="text-sm mt-3 ">{user?.pdfUploadCount} out of {totalPdf} PDF uploaded</p>
+          <Progress value={((userDetails?.pdfUploadCount || 0) / totalPdf) * 100} />
+          <p className="text-sm mt-3 ">{userDetails?.pdfUploadCount} out of {totalPdf} PDF uploaded</p>
           <p className="mt-1 text-xs text-muted-foreground"> Upgrade to upload more PDF</p>
         </div>
       </SidebarFooter>

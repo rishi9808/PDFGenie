@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Toaster } from "@/components/ui/sonner"
-const poppins = Poppins({subsets: ["latin"], weight: ["400", "500", "600", "700"]});
+import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/theme-provider";
+
+
+const dmSans = DM_Sans({
+  subsets: ["latin"], 
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-dm-sans"
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,16 +25,21 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <body
-        className={`${poppins.className} antialiased`}
-      >
-        <ConvexClientProvider>
-        {children}
-        <Toaster/>
-        </ConvexClientProvider>
-      </body>
-    </html>
+      <html lang="en" suppressHydrationWarning>
+        <body className={`${dmSans.variable} font-sans antialiased`}>
+            <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ConvexClientProvider>
+              {children}
+              <Toaster/>
+            </ConvexClientProvider>
+          </ThemeProvider>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }

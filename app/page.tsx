@@ -1,44 +1,29 @@
 "use client"
-import { api } from "@/convex/_generated/api";
-import { UserButton, useUser } from "@clerk/nextjs";
-import { useMutation } from "convex/react";
-import { useEffect } from "react";
+
+import { CallToAction } from "@/components/landing/call-to-action";
+import { Faqs } from "@/components/landing/faqs";
+import { Features } from "@/components/landing/features";
+import { Footer } from "@/components/landing/footer";
+import { Hero } from "@/components/landing/hero";
+import { LogoTicker } from "@/components/landing/logo-ticker";
+import { Navbar } from "@/components/landing/navbar";
+import { ProductShowcase } from "@/components/landing/product-showcase";
 
 
 export default function Home() {
-  const {  user } = useUser();
-  const createUser = useMutation(api.user.createUser);
-
-  useEffect(() => {
-    const checkUserExists = async () => {
-      if (user) {
-        const res = await createUser({
-          email: user?.primaryEmailAddress?.emailAddress ?? "",
-          imageUrl: user?.imageUrl ?? "",
-          userName: user?.fullName ?? "",
-          plan: "free",
-          pdfUploadCount: 0,
-        });
-        console.log(res);
-        //TODO: store user details in redux
-        localStorage.setItem("userId", res._id)
-      }
-    };
-    
-    if (user) {
-      checkUserExists();
-    }
-  }, [user, createUser])
+  
 
   return (
-    <div>
-      <UserButton />
-
-      <h1 className="text-3xl font-bold underline">
-        {user ? `Hello ${user?.firstName}` : `hi`}
-        
-      </h1>
+    <div className="min-h-screen">
+      <Navbar />
+      <Hero />
+      <LogoTicker />
+      <Features />
+      <ProductShowcase />
+      <Faqs />
+      <CallToAction />
+      <Footer />
     </div>
+  )
  
-  );
 }
