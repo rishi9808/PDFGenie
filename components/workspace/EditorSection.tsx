@@ -1,4 +1,3 @@
-
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
@@ -88,9 +87,15 @@ const EditorSection = ({
   });
 
   useEffect(() => {
-    if (workspaceContent?.success) {
-      const content = JSON.parse(workspaceContent.data?.editorContent);
-      editor?.commands.setContent(content);
+    if (workspaceContent?.success && workspaceContent.data?.editorContent) {
+      try {
+        const content = JSON.parse(workspaceContent.data.editorContent);
+        editor?.commands.setContent(content);
+      } catch (error) {
+        console.error("Error parsing editor content:", error);
+        // Set empty content if parsing fails
+        editor?.commands.clearContent();
+      }
     }
   }, [workspaceContent, editor]);
 

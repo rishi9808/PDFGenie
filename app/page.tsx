@@ -15,7 +15,9 @@ export default function Home() {
         const res = await createUser({
           email: user?.primaryEmailAddress?.emailAddress ?? "",
           imageUrl: user?.imageUrl ?? "",
-          userName: user?.fullName ?? ""
+          userName: user?.fullName ?? "",
+          plan: "free",
+          pdfUploadCount: 0,
         });
         console.log(res);
         //TODO: store user details in redux

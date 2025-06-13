@@ -48,7 +48,7 @@ useEffect(() => {
       {/* <ChatSection fileId={fileId as string} /> */}
 
 {/* Tabs for editor and chat */}
-      <Tabs defaultValue="editor" className="w-full ">
+      <Tabs defaultValue="editor" className="w-full">
         <TabsList className="border-b">
           <TabsTrigger value="editor">Editor</TabsTrigger>
           <TabsTrigger value="chat">Chat</TabsTrigger>

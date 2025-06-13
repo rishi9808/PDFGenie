@@ -72,8 +72,8 @@ const ChatSection = ({ fileId }: ChatSectionProps) => {
   }, [messages, isScrolled]);
 
   return (
-    <div className="border-r-2 bg-gray-100 border-gray-300 p-4 relative h-[100vh]">
-      <div>
+    <div className="flex flex-col border-r-2 bg-gray-100 border-gray-300 p-4 relative h-full">
+      <div className="flex flex-col h-full">
         <p className="text-gray-600 mb-4">
           Ask questions about the content of the PDF.
         </p>
@@ -83,7 +83,7 @@ const ChatSection = ({ fileId }: ChatSectionProps) => {
           onWheel={() => {
             setScrolled(true);
           }}
-          className="flex flex-col h-[80vh] overflow-y-auto mb-2 chat-container pb-16"
+          className="flex-1 flex-grow overflow-y-auto mb-16 chat-container"
         >
           <div className="">
             {remoteMessages === undefined ? (

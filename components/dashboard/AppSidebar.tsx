@@ -1,3 +1,4 @@
+"use client"
 import {
   Sidebar,
   SidebarContent,
@@ -13,6 +14,11 @@ import { Cable, Home, Settings,} from "lucide-react"
 
 import { Progress } from "../ui/progress"
 import { UploadPdfButtton } from "./UploadPdfButton"
+import { useQuery } from "convex/react"
+import { api } from "@/convex/_generated/api"
+import { Id } from "@/convex/_generated/dataModel"
+
+
 
 
 // Menu items.
@@ -35,7 +41,18 @@ const items = [
 ]
  
 
+
 export const AppSidebar = () => {
+  const userId = localStorage.getItem("userId")
+  const user = useQuery(api.user.getUserDetails, {
+    userId: userId as Id<"users">,
+  }) 
+
+  const totalPdf = user?.plan === "free" ? 3 : 5
+
+  if (!userId) {
+    return null
+  }
 
   return (
     <Sidebar variant="floating">
@@ -66,8 +83,8 @@ export const AppSidebar = () => {
       </SidebarContent>
       <SidebarFooter >
         <div className="border py-3 px-2 rounded-md text-center">
-          <Progress value={33} />
-          <p className="text-sm mt-3 ">2 out of 5 PDF uploaded</p>
+          <Progress value={((user?.pdfUploadCount || 0) / totalPdf) * 100} />
+          <p className="text-sm mt-3 ">{user?.pdfUploadCount} out of {totalPdf} PDF uploaded</p>
           <p className="mt-1 text-xs text-muted-foreground"> Upgrade to upload more PDF</p>
         </div>
       </SidebarFooter>
