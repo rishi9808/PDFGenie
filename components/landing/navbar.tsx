@@ -28,7 +28,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center">
             <Image 
               src="/Logo.svg" 
-              alt="Chat with PDF Logo" 
+              alt="PDFGenie Logo" 
               width={48} 
               height={48} 
               className="h-12 w-12" 

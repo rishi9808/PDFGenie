@@ -13,7 +13,7 @@ export function CallToAction() {
 
   return (
     <div
-      className="bg-black py-[72px] text-center text-white sm:py-24"
+      className="bg-black py-[72px] md:px-80 text-center text-white sm:py-24"
       ref={containerRef}
     >
       <div className="container relative max-w-lg">
@@ -21,8 +21,8 @@ export function CallToAction() {
           <Image
             src="/helix2.svg"
             alt=""
-            width={24}
-            height={24}
+            width={300}
+            height={100}
             className="absolute left-[calc(100%+36px)] top-6"
           />
         </motion.div>
@@ -30,17 +30,16 @@ export function CallToAction() {
           <Image
             src="/emojistar.svg"
             alt=""
-            width={24}
-            height={24}
+            width={300}
+            height={100}
             className="absolute -top-[120px] right-[calc(100%+24px)]"
           />
         </motion.div>
         <h2 className="text-5xl font-bold tracking-tighter sm:text-6xl">
-          Get instant access
+          Ready to Transform Your PDFs?
         </h2>
         <p className="mt-5 text-xl text-white/70">
-          Celebrate the joy of accomplishment with an app designed to track your
-          progress and motivate your efforts.
+          Join thousands of users who are already using PDFGenie to unlock the potential of their documents. Start your free account today.
         </p>
         <form className="mx-auto mt-10 flex max-w-sm flex-col gap-2.5 sm:flex-row">
           <input
@@ -52,7 +51,7 @@ export function CallToAction() {
             className="h-12 rounded-lg bg-white px-5 font-medium text-black"
             type="submit"
           >
-            Get access
+            Start Free Trial
           </button>
         </form>
       </div>

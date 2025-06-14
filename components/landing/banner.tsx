@@ -6,13 +6,13 @@ export function Banner() {
       <div className="container flex items-center justify-center">
         <p className="flex gap-2 font-medium">
           <span className="hidden sm:inline">
-            This page is included in a free SaaS Website Kit.
+            Transform your PDFs with AI-powered conversations.
           </span>
           <a
             href="#"
             className="flex items-center gap-1 underline underline-offset-4"
           >
-            View the complete Kit
+            Start Free Today
             <span>
               <Icon.ArrowRight />
             </span>

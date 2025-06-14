@@ -45,9 +45,9 @@ export function Hero() {
             href="#"
             className="inline-flex gap-3 rounded-lg border border-zinc-800 px-2 py-1"
           >
-            <span className="text-white/50">Version 2.0 is here</span>
+            <span className="text-white/50">AI-Powered PDF Intelligence</span>
             <span className="inline-flex items-center gap-1">
-              <span>Read More</span>
+              <span>Learn More</span>
               <IconArroRight />
             </span>
           </a>
@@ -55,10 +55,10 @@ export function Hero() {
         <div className="mt-8 flex justify-center">
           <div className="relative inline-flex">
             <h1 className="inline-flex text-center text-7xl font-bold tracking-tighter sm:text-[150px]">
-              One Task <br /> at a Time
+              PDFGenie <br /> Your AI Assistant
             </h1>
             <motion.div
-              className="absolute right-[498px] top-[70px] hidden sm:inline"
+              className="absolute right-[900px] top-[280px] hidden sm:inline"
               drag
               dragSnapToOrigin
               initial={{ y: 0 }}
@@ -76,7 +76,7 @@ export function Hero() {
               />
             </motion.div>
             <motion.div
-              className="absolute left-[515px] top-[120px] hidden sm:inline"
+              className="absolute right-[5px]  hidden sm:inline"
               drag
               dragSnapToOrigin
               initial={{ y: 0 }}
@@ -97,13 +97,12 @@ export function Hero() {
         </div>
         <div className="flex justify-center">
           <p className="mt-8 max-w-md text-center text-xl">
-            Celebrate the joy of accomplishment with an app designed to track
-            your progress, motivate your efforts, and celebrate your successes.
+            Unlock the power of your PDF documents with AI-driven conversations. Upload any PDF and get instant, intelligent answers to your questions. Transform static documents into dynamic knowledge sources.
           </p>
         </div>
         <div className="mt-8 flex justify-center">
           <button className="rounded-lg bg-white px-5 py-3 font-medium text-black">
-            Get for free
+            Start with PDFGenie Free
           </button>
         </div>
       </div>

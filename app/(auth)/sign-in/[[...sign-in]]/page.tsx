@@ -9,12 +9,12 @@ export default function SignInPage() {
       <Link href="/" className="flex items-center space-x-2">
         <Image 
           src="/Logo.svg" 
-          alt="Chat with PDF Logo" 
+          alt="PDFGenie Logo" 
           width={40} 
           height={40} 
           className="h-10 w-10" 
         />
-        <span className="text-xl font-bold text-white">Chat with PDF</span>
+        <span className="text-xl font-bold text-white">PDFGenie</span>
       </Link>
       
       {/* Welcome message */}

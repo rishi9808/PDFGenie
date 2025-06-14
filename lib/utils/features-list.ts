@@ -7,20 +7,20 @@ export interface Feature {
 export const featuresList: Feature[] = [
   {
     id: '1',
-    title: 'Integration ecosystem',
+    title: 'Intelligent PDF Chat',
     description:
-      'Enhance your productivity by connecting with your favorite tools, keeping all your essentials in one place.',
+      'Engage in natural conversations with your PDF documents. Ask questions, get summaries, and extract key information using advanced AI technology.',
   },
   {
     id: '2',
-    title: 'Goal setting and tracking',
+    title: 'Smart Document Processing',
     description:
-      'Define and track your goals, breaking down objectives into achievable tasks to keep your targets in sight.',
+      'Automatically analyze and understand your PDFs. Extract insights, identify key topics, and organize information for easy access and retrieval.',
   },
   {
     id: '3',
-    title: 'Secure data encryption',
+    title: 'Secure Cloud Storage',
     description:
-      'With end-to-end encryption, your data is securely stored and protected from unauthorized access.',
+      'Your documents are safely stored with enterprise-grade security. All data is encrypted end-to-end, ensuring complete privacy and data protection.',
   },
 ]

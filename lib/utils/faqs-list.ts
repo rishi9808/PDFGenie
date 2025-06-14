@@ -7,26 +7,32 @@ export interface FaqItem {
 export const faqsList: FaqItem[] = [
   {
     id: '1',
-    question: 'What payment methods do you accept?',
+    question: 'How many PDFs can I upload for free?',
     answer:
-      'We accept all major credit cards, PayPal, and various other payment methods depending on your location. Please contact our support team for more information on accepted payment methods in your region.',
+      'With PDFGenie&apos;s free plan, you can upload up to 3 PDFs. This gives you full access to our AI-powered chat features, document analysis, and secure storage for your documents.',
   },
   {
     id: '2',
-    question: 'How does the pricing work for teams?',
+    question: 'What types of PDF files are supported?',
     answer:
-      'Our pricing is per user, per month. This means you only pay for the number of team members you have on your account. Discounts are available for larger teams and annual subscriptions.',
+      'PDFGenie supports all standard PDF files including text-based documents, scanned PDFs with OCR, academic papers, business reports, manuals, and more. Maximum file size is 50MB per document.',
   },
   {
     id: '3',
-    question: 'Can I change my plan later?',
+    question: 'How does the AI chat feature work?',
     answer:
-      'Yes, you can upgrade or downgrade your plan at any time. Changes to your plan will be prorated and reflected in your next billing cycle.',
+      'Our advanced AI analyzes your PDF content and creates a knowledge base. You can then ask questions in natural language, request summaries, or search for specific information within your documents.',
   },
   {
     id: '4',
-    question: 'Is my data secure?',
+    question: 'Is my data secure and private?',
     answer:
-      'Security is our top priority. We use state-of-the-art encryption and comply with the best industry practices to ensure that your data is stored securely and accessed only by authorized users.',
+      'Absolutely. PDFGenie uses enterprise-grade encryption for all data transmission and storage. Your documents are processed securely and are only accessible by you. We never share or use your content for training purposes.',
+  },
+  {
+    id: '5',
+    question: 'Can I upgrade my plan later?',
+    answer:
+      'Yes, you can upgrade to our premium plan at any time to unlock additional features like unlimited PDF uploads, priority processing, and advanced AI capabilities.',
   },
 ]

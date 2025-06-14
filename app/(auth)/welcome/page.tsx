@@ -15,7 +15,7 @@ export default function WelcomePage() {
           <div className="flex justify-center">
             <Image 
               src="/Logo.svg" 
-              alt="Chat with PDF Logo" 
+              alt="PDFGenie Logo" 
               width={80} 
               height={80} 
               className="h-20 w-20" 

@@ -50,7 +50,7 @@ export const AppSidebar = () => {
     return (
       <Sidebar variant="floating">
         <SidebarHeader className="pt-3 font-bold">
-          Chat with PDF
+          PDFGenie
         </SidebarHeader>
         <SidebarContent>
           <div className="flex items-center justify-center h-32">
@@ -62,10 +62,9 @@ export const AppSidebar = () => {
   }
 
   return (
-    <Sidebar variant="floating">
-      <SidebarHeader className="pt-3 font-bold">
-        Chat with PDF
-      </SidebarHeader>
+    <Sidebar variant="floating">        <SidebarHeader className="pt-3 font-bold">
+          PDFGenie
+        </SidebarHeader>
        <SidebarContent>
         <SidebarGroup />
        

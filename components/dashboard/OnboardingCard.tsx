@@ -28,7 +28,7 @@ export function OnboardingCard() {
           </span>
         </CardTitle>
         <CardDescription>
-          Complete these steps to get the most out of Chat with PDF
+          Complete these steps to get the most out of PDFGenie
         </CardDescription>
         <Progress value={progressPercentage} className="w-full" />
       </CardHeader>

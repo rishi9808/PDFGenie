@@ -25,13 +25,11 @@ export function ProductShowcase() {
     <div className="bg-black bg-gradient-to-b from-black to-[#5D2CA8] py-[72px] text-white sm:py-24">
       <div className="container">
         <h2 className="text-center text-5xl font-bold tracking-tighter sm:text-6xl">
-          Intuitive interface
+          Experience PDFGenie in Action
         </h2>
         <div className="mx-auto max-w-xl">
           <p className="mt-5 text-center text-xl text-white/70">
-            Celebrate the joy of accomplishment with an app designed to track
-            your progress, motivate your efforts, and celebrate your successes,
-            one task at a time.
+            See how PDFGenie transforms document interaction. Upload any PDF and start intelligent conversations that unlock insights and save you time.
           </p>
         </div>
         <motion.div

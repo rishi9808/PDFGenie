@@ -100,7 +100,9 @@ const ChatSection = ({ fileId }: ChatSectionProps) => {
                       (message.isViewer ? "justify-end" : "justify-start")
                     }
                   >
-                    {!message.isViewer && <Bot className="text-gray-500 mr-2 size-5" />}
+                    {!message.isViewer && (
+                      <Bot className="text-gray-500 mr-2 size-5" />
+                    )}
                     {message.text === "" ? (
                       <div className="animate-pulse rounded-md bg-blue-300 h-9" />
                     ) : (
@@ -118,7 +120,9 @@ const ChatSection = ({ fileId }: ChatSectionProps) => {
                         >
                           {message.text}
                         </p>
-                        {message.isViewer && <User className="text-gray-500 ml-2 size-5" />}
+                        {message.isViewer && (
+                          <User className="text-gray-500 ml-2 size-5" />
+                        )}
                       </div>
                     )}
                   </div>

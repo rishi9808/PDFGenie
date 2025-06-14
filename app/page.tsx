@@ -5,7 +5,6 @@ import { Faqs } from "@/components/landing/faqs";
 import { Features } from "@/components/landing/features";
 import { Footer } from "@/components/landing/footer";
 import { Hero } from "@/components/landing/hero";
-import { LogoTicker } from "@/components/landing/logo-ticker";
 import { Navbar } from "@/components/landing/navbar";
 import { ProductShowcase } from "@/components/landing/product-showcase";
 
@@ -17,7 +16,6 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       <Hero />
-      <LogoTicker />
       <Features />
       <ProductShowcase />
       <Faqs />
