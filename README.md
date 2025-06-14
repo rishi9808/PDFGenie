@@ -191,15 +191,6 @@ chat-with-pdf/
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📋 API Routes
-
-- **`/api/process-pdf`** - PDF processing and text extraction
-- **Convex Functions**:
-  - `pdf.addPdf` - Add PDF to database
-  - `messages.send` - Send chat message
-  - `workspace.saveWorkspace` - Save workspace content
-  - `user.createUser` - Create new user
-
 ## 🔐 Security
 
 - All user data is encrypted in transit and at rest
@@ -207,42 +198,12 @@ chat-with-pdf/
 - PDF files are securely stored and processed
 - API routes are protected with authentication middleware
 
-## 📊 Database Schema
-
-The application uses Convex with the following main tables:
-- **users** - User profiles and settings
-- **pdfs** - PDF document metadata
-- **messages** - Chat messages and sessions
-- **documents** - Document embeddings for AI search
-- **workspace** - User workspace content
-
-## 🎯 Roadmap
-
-- [ ] Advanced PDF annotation tools
-- [ ] Collaboration features
-- [ ] Mobile app development
-- [ ] Integration with cloud storage providers
-- [ ] Advanced AI models support
-- [ ] Bulk document processing
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
-
-For support, email support@pdfgenie.com or join our Discord community.
-
-## 🙏 Acknowledgments
-
-- [Next.js team](https://nextjs.org) for the amazing framework
-- [Convex](https://convex.dev) for the backend infrastructure
-- [Clerk](https://clerk.com) for authentication services
-- [OpenAI](https://openai.com) for AI capabilities
-- [Vercel](https://vercel.com) for hosting and deployment
-
----
 
 <div align="center">
-  <p>Made with ❤️ by the PDFGenie team</p>
+  <p>Made with ❤️ by Rishkesh K V</p>
 </div>
