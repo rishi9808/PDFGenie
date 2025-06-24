@@ -4,10 +4,24 @@ import Image from 'next/image'
 import { useEffect } from 'react'
 
 import { ArrowRight as IconArroRight } from './icons'
+import { useUser } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
+import { Button } from '../ui/button'
 
 export function Hero() {
   const cursoImageAnimateControls = useAnimation()
   const messageImageAnimateControls = useAnimation()
+
+  const { isSignedIn,} = useUser();
+  const router = useRouter();
+
+  const handleDashboardRedirect = () => {
+    router.push("/dashboard");
+  };
+
+  const handleSignUpRedirect = () => {
+    router.push("/sign-up");
+  };
 
   const floatAnimation = {
     y: [0, -10, 0],
@@ -101,9 +115,27 @@ export function Hero() {
           </p>
         </div>
         <div className="mt-8 flex justify-center">
-          <button className="rounded-lg bg-white px-5 py-3 font-medium text-black">
+          {/* {<button className="rounded-lg bg-white px-5 py-3 font-medium text-black">
             Start with PDFGenie Free
-          </button>
+          </button>} */}
+          {
+            isSignedIn ? 
+            (
+              <Button
+                className="rounded-lg bg-white px-5 py-3 font-medium text-black"
+                onClick={handleDashboardRedirect}
+              >
+                Go to Dashboard
+              </Button>
+            ) : (
+              <Button
+                className="rounded-lg bg-white px-5 py-3 font-medium text-black"
+                onClick={handleSignUpRedirect}
+              >
+                Start with PDFGenie Free
+              </Button>
+            )
+          }
         </div>
       </div>
     </div>
